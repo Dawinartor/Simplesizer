@@ -1,5 +1,3 @@
-from pydub import AudioSegment
-from pydub.playback import play
+from audioplayer import AudioPlayer as player
 
-song = AudioSegment.from_mp3('./example/sounds/NeverGonnaGiveYouUp.MP3')
-play(song)
+# basic
