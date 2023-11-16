@@ -1,8 +1,7 @@
+import sys
+import threading
 from pydub import AudioSegment
 from pydub.playback import play
-import threading
-import time
-
 
 class SoundPlayer:
     def __init__(self, file_path):
@@ -25,18 +24,14 @@ class SoundPlayer:
         self.stopped = True
 
     def _play_sound(self):
-        play(self.sound)
+        play(self.sound, stop_func=self._check_stop)
 
     def _check_stop(self):
         return self.stopped
 
-
-if __name__ == "__main__":
-    sound_file_path = "../example/sounds/NeverGonnaGiveYouUp.MP3"
-
-    player = SoundPlayer(sound_file_path)
-
-    print(f"Playing sound: {sound_file_path}")
+def play_sound(file_path):
+    player = SoundPlayer(file_path)
+    print(f"Playing sound: {file_path}")
     player.play()
 
     while True:
@@ -59,4 +54,10 @@ if __name__ == "__main__":
         else:
             print("Invalid command")
 
-        time.sleep(0.1)  # Let the main thread sleep to avoid high CPU usage
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        print("Usage: python script_name.py <sound_file_path>")
+        sys.exit(1)
+
+    sound_file_path = sys.argv[1]
+    play_sound(sound_file_path)
