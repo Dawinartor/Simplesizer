@@ -49,10 +49,13 @@ def user_input(player):
             player.stop()
             print("Exiting")
         else:
-            print("Invalid command")
+            print("Wrong button bruh...")
+
+
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
+        print("")
         print("Usage: python script_name.py <sound_file_path>")
         sys.exit(1)
 
