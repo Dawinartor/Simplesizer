@@ -1,35 +1,30 @@
 from pydub import AudioSegment
-from pydub.playback import play
+import pygame
 import threading
 import time
 
-
 class SoundPlayer:
     def __init__(self, file_path):
+        pygame.mixer.init()
         self.sound = AudioSegment.from_file(file_path)
-        self.playing_thread = None
         self.paused = False
         self.stopped = False
 
     def play(self):
-        self.playing_thread = threading.Thread(target=self._play_sound)
-        self.playing_thread.start()
+        pygame.mixer.music.load(self.sound.export(format="wav"))
+        pygame.mixer.music.play()
 
     def pause(self):
+        pygame.mixer.music.pause()
         self.paused = True
 
     def resume(self):
+        pygame.mixer.music.unpause()
         self.paused = False
 
     def stop(self):
+        pygame.mixer.music.stop()
         self.stopped = True
-
-    def _play_sound(self):
-        play(self.sound)
-
-    def _check_stop(self):
-        return self.stopped
-
 
 if __name__ == "__main__":
     sound_file_path = "../example/sounds/NeverGonnaGiveYouUp.MP3"
