@@ -1,51 +1,61 @@
 from pydub import AudioSegment
-from pydub.playback import play
+import pygame
 import threading
 import time
 
-
 class SoundPlayer:
     def __init__(self, file_path):
+        pygame.mixer.init()
         self.sound = AudioSegment.from_file(file_path)
-        self.playing_thread = None
         self.paused = False
         self.stopped = False
+        self.pitch_factor = 1.0  # Standard-Tonhöhenfaktor
+        self.speedup_factor = 1.0  # Standard-Geschwindigkeitsfaktor
 
     def play(self):
-        self.playing_thread = threading.Thread(target=self._play_sound)
-        self.playing_thread.start()
+        adjusted_sound = self.sound._spawn(self.sound.raw_data, overrides={
+            "frame_rate": int(self.sound.frame_rate * self.pitch_factor)
+        })
+        #adjusted_sound = adjusted_sound.speedup(playback_speed=self.speedup_factor)
+        pygame.mixer.music.load(adjusted_sound.export(format="wav"))
+        pygame.mixer.music.play()
 
     def pause(self):
-        #sound pausieren
+        pygame.mixer.music.pause()
         self.paused = True
 
     def resume(self):
-        #abspielen des sounds fortsetzen
+        pygame.mixer.music.unpause()
         self.paused = False
 
     def stop(self):
-        #sound stoppen
+        pygame.mixer.music.stop()
         self.stopped = True
 
-    def _play_sound(self):
-        play(self.sound)
+    def restart(self):
+        pygame.mixer.music.rewind()
+        self.paused = False
+        self.stopped = False
+        self.play()
 
-    def _check_stop(self):
-        return self.stopped
+    def change_pitch(self, pitch_factor):
+        self.pitch_factor = pitch_factor
+
+    def change_speed(self, speedup_factor):
+        self.speedup_factor = speedup_factor
+
 
 
 if __name__ == "__main__":
     sound_file_path = "../example/sounds/NeverGonnaGiveYouUp.MP3"
-
     player = SoundPlayer(sound_file_path)
-
-    print(f"Playing sound: {sound_file_path}")
-    player.play()
-
     while True:
-        command = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
-
-        if command == 'p':
+        command = input(
+            "Enter 'a' to play, 'p' to pause, 'r' to resume, 's' to stop, 'q' to quit, 'c' to restart, 't' to change pitch, or 'g' to change speed: ").lower()
+        if command == 'a':
+            print(f"Playing sound: {sound_file_path}")
+            player.play()
+        elif command == 'p':
             player.pause()
             print("Paused")
         elif command == 'r':
@@ -54,12 +64,29 @@ if __name__ == "__main__":
         elif command == 's':
             player.stop()
             print("Stopped")
-            break
         elif command == 'q':
             player.stop()
             print("Exiting")
             break
+        elif command == 'c':
+            player.restart()
+            print("Restarted")
+        elif command == 't':
+            try:
+                pitch_factor = float(input("Enter pitch factor (e.g., 2.0 for double, 0.5 for half): "))
+                player.change_pitch(pitch_factor)
+                print(f"Changed pitch to {pitch_factor}")
+                player.restart()
+            except ValueError:
+                print("Invalid pitch factor. Please enter a valid number.")
+        elif command == 'g':
+            try:
+                speedup_factor = float(input("Enter speedup factor (e.g., 2.0 for double, 0.5 for half): "))
+                player.change_speed(speedup_factor)
+                print(f"Changed speed to {speedup_factor}")
+                player.restart()
+            except ValueError:
+                print("Invalid speedup factor. Please enter a valid number.")
         else:
             print("Invalid command")
-
         time.sleep(0.1)  # Let the main thread sleep to avoid high CPU usage
