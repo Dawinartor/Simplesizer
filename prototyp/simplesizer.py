@@ -6,10 +6,11 @@ import pygame
 class SoundPlayer:
     def __init__(self, file_path):
         self.sound = AudioSegment.from_file(file_path)
-        self.initPitch = 1.0
+        self.frequency = 44100
+
 
     def play(self):
-        pygame.mixer.init()
+        pygame.mixer.init(self.frequency)
         pygame.mixer.music.load(file_path)
         pygame.mixer.music.play()
 
@@ -40,16 +41,14 @@ class SoundPlayer:
 
 
 
+
+
 def user_input(player):
     while True:
         userInput = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
         inputValues = userInput.split()
         menuChoice = inputValues[0]
 
-        if len(inputValues) == 2:
-            aditionalMenuValue = inputValues[1]
-            if menuChoice == 'w': # adjust song volume
-                player.pitch(aditionalMenuValue)
 
         if len(inputValues) == 1:
 
@@ -69,8 +68,15 @@ def user_input(player):
             else:
                 print("Wrong button bruh...")
 
-        else:
-            print("Give me input bruhh..")
+
+        if len(inputValues) == 2:
+            aditionalMenuValue = inputValues[1]
+
+            if menuChoice == 'w': # adjust song volume
+                player.pitch(aditionalMenuValue)
+            elif menuChoice == 'e':
+
+
 
 
 
