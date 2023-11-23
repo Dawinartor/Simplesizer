@@ -36,6 +36,8 @@ class SoundPlayer:
         else:
             pygame.mixer.music.set_volume(musicVolume)
 
+    def playback(self, speed):
+        self.frequency = speed
 
 
 
