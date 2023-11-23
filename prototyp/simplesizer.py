@@ -6,8 +6,7 @@ import pygame
 class SoundPlayer:
     def __init__(self, file_path):
         self.sound = AudioSegment.from_file(file_path)
-        self.paused = False
-        self.stopped = False
+        self.pitchValue = 1.0
 
     def play(self):
         pygame.mixer.init()
@@ -23,14 +22,19 @@ class SoundPlayer:
                 pygame.mixer.music.unpause()
 
     def pause(self):
-        self.paused = True
+        pygame.mixer.music.pause()
 
     def resume(self):
-        self.paused = False
+        pygame.mixer.music.unpause()
 
     def stop(self):
         self.stopped = True
         pygame.mixer.music.stop()
+
+   # def pitch(self, pitchValue):
+
+
+
 
 def user_input(player):
     while not player.stopped:
