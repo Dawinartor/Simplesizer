@@ -1,48 +1,34 @@
 import sys
 import threading
 from pydub import AudioSegment
-import pygame
+from pydub.playback import play
+
 
 class SoundPlayer:
     def __init__(self, file_path):
         self.sound = AudioSegment.from_file(file_path)
-        self.frequency = 22050 #22050
-
+        # self.frequency = 22050 #22050
 
     def play(self):
-        pygame.mixer.init(frequency=22050, allowedchanges=0)
-        pygame.mixer.music.load(file_path)
-        pygame.mixer.music.play()
+        play(self.sound)
 
     def pause(self):
-        pygame.mixer.music.pause()
+        pass
 
     def resume(self):
-        pygame.mixer.music.unpause()
+        pass
 
     def stop(self):
-        pygame.mixer.music.stop()
+        pass
 
     def quit(self):
-        pygame.quit()
-        sys.exit()
+        pass
 
     def pitch(self, pitchValue):
-        # cast to float
-        musicVolume = float(pitchValue)
-        # check if pitchValue is lower
-        if musicVolume < 0.0:
-            print("insert a value between 0.0 and 1.0 to hear a effect")
-        else:
-            pygame.mixer.music.set_volume(musicVolume)
+        pass
 
     def playback(self, speed):
-        self.frequency = speed
-
-
-
-
-
+        pass
 
 
 def user_input(player):
@@ -51,36 +37,25 @@ def user_input(player):
         inputValues = userInput.split()
         menuChoice = inputValues[0]
 
-
         if len(inputValues) == 1:
-
             if menuChoice == 'a':  # pause the music
-                player.pause()
-                print("Paused")
+                player.play()
             elif menuChoice == 's':  # resume the music
-                player.resume()
-                print("Resumed")
+                pass
             elif menuChoice == 'd':  # stop the music BUT do we need this function? And if yes, what for?
-                player.stop()
-                print("Stopped")
+                pass
             elif menuChoice == 'q':  # quit the program
-                # this order is necessary!
-                print("Exiting")
-                player.quit()
+                pass
             else:
-                print("Wrong button bruh...")
-
-
-        if len(inputValues) == 2:
-            aditionalMenuValue = inputValues[1]
-
-            if menuChoice == 'w': # adjust song volume
-                player.pitch(aditionalMenuValue)
-            elif menuChoice == 'e': # adjust song speed
                 pass
 
-
-
+        # if len(inputValues) == 2:
+        #     aditionalMenuValue = inputValues[1]
+        #
+        #     if menuChoice == 'w':  # adjust song volume
+        #         player.pitch(aditionalMenuValue)
+        #     elif menuChoice == 'e':  # adjust song speed
+        #         pass
 
 
 if __name__ == "__main__":
