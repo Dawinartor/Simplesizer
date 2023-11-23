@@ -1,7 +1,6 @@
 import sys
 import threading
 from pydub import AudioSegment
-import pygame
 
 class SoundPlayer:
     def __init__(self, file_path):
