@@ -26,7 +26,9 @@ class SoundPlayer:
         pygame.quit()
         sys.exit()
 
-   # def pitch(self, pitchValue):
+    #def pitch(self, pitchValue):
+
+
 
 
 
@@ -34,6 +36,8 @@ class SoundPlayer:
 def user_input(player):
     while True:
         command = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
+
+        print(command[0])
 
         if command == 'p':
             player.pause()
@@ -45,8 +49,9 @@ def user_input(player):
             player.stop()
             print("Stopped")
         elif command == 'q':
-            player.quit()
+            # this order is necessary!
             print("Exiting")
+            player.quit()
         else:
             print("Wrong button bruh...")
 
