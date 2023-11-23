@@ -6,20 +6,12 @@ import pygame
 class SoundPlayer:
     def __init__(self, file_path):
         self.sound = AudioSegment.from_file(file_path)
-        self.pitchValue = 1.0
+        self.initPitch = 1.0
 
     def play(self):
         pygame.mixer.init()
         pygame.mixer.music.load(file_path)
         pygame.mixer.music.play()
-
-        while pygame.mixer.music.get_busy() and not self.stopped:
-            pygame.time.Clock().tick(10)
-            if self.paused:
-                pygame.mixer.music.pause()
-                while self.paused:
-                    pass
-                pygame.mixer.music.unpause()
 
     def pause(self):
         pygame.mixer.music.pause()
@@ -28,8 +20,11 @@ class SoundPlayer:
         pygame.mixer.music.unpause()
 
     def stop(self):
-        self.stopped = True
         pygame.mixer.music.stop()
+
+    def quit(self):
+        pygame.quit()
+        sys.exit()
 
    # def pitch(self, pitchValue):
 
@@ -37,7 +32,7 @@ class SoundPlayer:
 
 
 def user_input(player):
-    while not player.stopped:
+    while True:
         command = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
 
         if command == 'p':
@@ -50,7 +45,7 @@ def user_input(player):
             player.stop()
             print("Stopped")
         elif command == 'q':
-            player.stop()
+            player.quit()
             print("Exiting")
         else:
             print("Wrong button bruh...")
