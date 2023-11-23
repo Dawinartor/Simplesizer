@@ -26,7 +26,14 @@ class SoundPlayer:
         pygame.quit()
         sys.exit()
 
-    #def pitch(self, pitchValue):
+    def pitch(self, pitchValue):
+        # cast to float
+        musicVolume = float(pitchValue)
+        # check if pitchValue is lower
+        if musicVolume < 0.0:
+            print("insert a value between 0.0 and 1.0 to hear a effect")
+        else:
+            pygame.mixer.music.set_volume(musicVolume)
 
 
 
@@ -35,25 +42,35 @@ class SoundPlayer:
 
 def user_input(player):
     while True:
-        command = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
+        userInput = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
+        inputValues = userInput.split()
+        menuChoice = inputValues[0]
 
-        print(command[0])
+        if len(inputValues) == 2:
+            aditionalMenuValue = inputValues[1]
+            if menuChoice == 'w': # adjust song volume
+                player.pitch(aditionalMenuValue)
 
-        if command == 'p':
-            player.pause()
-            print("Paused")
-        elif command == 'r':
-            player.resume()
-            print("Resumed")
-        elif command == 's':
-            player.stop()
-            print("Stopped")
-        elif command == 'q':
-            # this order is necessary!
-            print("Exiting")
-            player.quit()
+        if len(inputValues) == 1:
+
+            if menuChoice == 'a':  # pause the music
+                player.pause()
+                print("Paused")
+            elif menuChoice == 's':  # resume the music
+                player.resume()
+                print("Resumed")
+            elif menuChoice == 'd':  # stop the music BUT do we need this function? And if yes, what for?
+                player.stop()
+                print("Stopped")
+            elif menuChoice == 'q':  # quit the program
+                # this order is necessary!
+                print("Exiting")
+                player.quit()
+            else:
+                print("Wrong button bruh...")
+
         else:
-            print("Wrong button bruh...")
+            print("Give me input bruhh..")
 
 
 
