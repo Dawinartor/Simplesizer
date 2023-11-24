@@ -1,15 +1,18 @@
 import sys
 import threading
 import pygame
+from pydub import AudioSegment
+from pydub.playback import play
 
 class SoundPlayer:
     def __init__(self, file_path):
-        self.sound = AudioSegment.from_file(file_path)
+        self.sound = file_path
         self.frequency = 22050 #22050
+        self.speed = 1.0
 
 
     def play(self):
-        pygame.mixer.init(frequency=22050, allowedchanges=0)
+        pygame.mixer.init()
         pygame.mixer.music.load(file_path)
         pygame.mixer.music.play()
 
@@ -36,7 +39,13 @@ class SoundPlayer:
             pygame.mixer.music.set_volume(musicVolume)
 
     def playback(self, speed):
-        self.frequency = speed
+        self.speed = float(speed)
+        audio = AudioSegment.from_file(self.sound, format="mp3")
+        increasedSpeedAudio = audio.speedup(playback_speed=self.speed)
+        play(increasedSpeedAudio)
+
+
+
 
 
 
@@ -46,7 +55,7 @@ class SoundPlayer:
 
 def user_input(player):
     while True:
-        userInput = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
+        userInput = input("Enter 'a' to pause, 's' to resume, 'd' to stop, 'w' to adjust song volume, 'e' to adjust song speed or 'q' to quit: ").lower()
         inputValues = userInput.split()
         menuChoice = inputValues[0]
 
@@ -76,7 +85,7 @@ def user_input(player):
             if menuChoice == 'w': # adjust song volume
                 player.pitch(aditionalMenuValue)
             elif menuChoice == 'e': # adjust song speed
-                pass
+                player.playback(aditionalMenuValue)
 
 
 
