@@ -1,3 +1,5 @@
+import os
+import subprocess
 import sys
 import threading
 import pygame
@@ -44,10 +46,9 @@ class Simplesizer:
     def playback(self, speed):
         pygame.quit()
         self.speed = float(speed)
-        audio = AudioSegment.from_file(self.sound, format="mp3")
+        audio = AudioSegment.from_file(self.song, format="mp3")
         increased_speed_audio = audio.speedup(playback_speed=self.speed)
         play(increased_speed_audio)
-
 
 def user_input(player):
     while True:
