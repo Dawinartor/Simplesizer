@@ -10,9 +10,11 @@ class Simplesizer:
         self.song = song_path
         self.speed = 1.0
 
-    def load_player(self):
+    def initialize(self):
         pygame.mixer.init()
-        pygame.mixer.music.load(self.song)
+
+    def load_song(self, new_song_path):
+        pygame.mixer.music.load(new_song_path)
 
     def play(self):
         pygame.mixer.music.play()
@@ -51,6 +53,7 @@ def user_input(player):
     while True:
         user_input = input("""
                             You have following options, type the option and press enter:
+                            0. 'x' to play
                             1. 'a' to pause
                             2. 's' to resume
                             3. 'd' to stop
@@ -79,6 +82,8 @@ def user_input(player):
                 # this order is necessary!
                 print("Exiting")
                 player.quit()
+            elif menu_choice == 'x':
+                player.play()
             else:
                 print("Wrong button bruh...")
 
@@ -90,7 +95,7 @@ def user_input(player):
             elif menu_choice == 'e':  # adjust song speed
                 player.playback(aditional_menu_value)
             elif menu_choice == 'z':
-                player.play()
+                player.load_song(aditional_menu_value)
 
 # starting the core functionalities
 if __name__ == "__main__":
@@ -101,7 +106,8 @@ if __name__ == "__main__":
         sys.exit(1)
 
     simplesizer = Simplesizer(sys.argv[1])
-    simplesizer.load_player()
+    simplesizer.initialize()
+    simplesizer.load_song(simplesizer.song)
 
     # Start a separate thread for user input
     input_thread = threading.Thread(target=user_input, args=(simplesizer,))
