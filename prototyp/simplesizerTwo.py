@@ -49,8 +49,17 @@ class Simplesizer:
 
 def user_input(player):
     while True:
-        user_input = input(
-            "Enter 'a' to pause, 's' to resume, 'd' to stop, 'w' to adjust song volume, 'e' to adjust song speed or 'q' to quit: ").lower()
+        user_input = input("""
+                            You have following options, type the option and press enter:
+                            1. 'a' to pause
+                            2. 's' to resume
+                            3. 'd' to stop
+                            4. 'w' to adjust song volume
+                            5. 'e' to adjust song speed
+                            6. 'z' to load an new file 
+                            or 'q' to quit
+                            """.lower())
+
         input_values = user_input.split()
         menu_choice = input_values[0]
 
@@ -80,6 +89,8 @@ def user_input(player):
                 player.pitch(aditional_menu_value)
             elif menu_choice == 'e':  # adjust song speed
                 player.playback(aditional_menu_value)
+            elif menu_choice == 'z':
+                player.play()
 
 # starting the core functionalities
 if __name__ == "__main__":
@@ -93,11 +104,11 @@ if __name__ == "__main__":
     simplesizer.load_player()
 
     # Start a separate thread for user input
-    input_thread = threading.Thread(target=user_input, args=(player,))
+    input_thread = threading.Thread(target=user_input, args=(simplesizer,))
     input_thread.start()
 
     # Start audio playback in the main thread
-    player.play()
+    simplesizer.play()
 
     # Wait for the input thread to finish
     input_thread.join()
