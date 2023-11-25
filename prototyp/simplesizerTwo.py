@@ -113,8 +113,5 @@ if __name__ == "__main__":
     input_thread = threading.Thread(target=user_input, args=(simplesizer,))
     input_thread.start()
 
-    # Start audio playback in the main thread
-    simplesizer.play()
-
     # Wait for the input thread to finish
     input_thread.join()
