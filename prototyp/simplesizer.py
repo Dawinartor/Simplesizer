@@ -1,16 +1,24 @@
+import os
+import subprocess
 import sys
 import threading
 import pygame
+from pydub import AudioSegment
+from pydub.playback import play
 
-class SoundPlayer:
-    def __init__(self, file_path):
-        self.sound = AudioSegment.from_file(file_path)
-        self.frequency = 22050 #22050
 
+class Simplesizer:
+    def __init__(self, song_path):
+        self.song = song_path
+        self.speed = 1.0
+
+    def initialize(self):
+        pygame.mixer.init()
+
+    def load_song(self, new_song_path):
+        pygame.mixer.music.load(new_song_path)
 
     def play(self):
-        pygame.mixer.init(frequency=22050, allowedchanges=0)
-        pygame.mixer.music.load(file_path)
         pygame.mixer.music.play()
 
     def pause(self):
@@ -36,67 +44,75 @@ class SoundPlayer:
             pygame.mixer.music.set_volume(musicVolume)
 
     def playback(self, speed):
-        self.frequency = speed
-
-
-
-
-
-
+        pygame.quit()
+        self.speed = float(speed)
+        audio = AudioSegment.from_file(self.song, format="mp3")
+        increased_speed_audio = audio.speedup(playback_speed=self.speed)
+        play(increased_speed_audio)
 
 def user_input(player):
     while True:
-        userInput = input("Enter 'p' to pause, 'r' to resume, 's' to stop, or 'q' to quit: ").lower()
-        inputValues = userInput.split()
-        menuChoice = inputValues[0]
+        user_input = input("""
+                            You have following options, type the option and press enter:
+                            0. 'x' to play
+                            1. 'a' to pause
+                            2. 's' to resume
+                            3. 'd' to stop
+                            4. 'w' to adjust song volume
+                            5. 'e' to adjust song speed
+                            6. 'z' to load an new file 
+                            or 'q' to quit
+                            """.lower())
+
+        input_values = user_input.split()
+        menu_choice = input_values[0]
 
 
-        if len(inputValues) == 1:
+        if len(input_values) == 1:
 
-            if menuChoice == 'a':  # pause the music
+            if menu_choice == 'a':  # pause the music
                 player.pause()
                 print("Paused")
-            elif menuChoice == 's':  # resume the music
+            elif menu_choice == 's':  # resume the music
                 player.resume()
                 print("Resumed")
-            elif menuChoice == 'd':  # stop the music BUT do we need this function? And if yes, what for?
+            elif menu_choice == 'd':  # stop the music BUT do we need this function? And if yes, what for?
                 player.stop()
                 print("Stopped")
-            elif menuChoice == 'q':  # quit the program
+            elif menu_choice == 'q':  # quit the program
                 # this order is necessary!
                 print("Exiting")
                 player.quit()
+            elif menu_choice == 'x':
+                player.play()
             else:
                 print("Wrong button bruh...")
 
+        if len(input_values) == 2:
+            aditional_menu_value = input_values[1]
 
-        if len(inputValues) == 2:
-            aditionalMenuValue = inputValues[1]
+            if menu_choice == 'w':  # adjust song volume
+                player.pitch(aditional_menu_value)
+            elif menu_choice == 'e':  # adjust song speed
+                player.playback(aditional_menu_value)
+            elif menu_choice == 'z':
+                player.load_song(aditional_menu_value)
 
-            if menuChoice == 'w': # adjust song volume
-                player.pitch(aditionalMenuValue)
-            elif menuChoice == 'e': # adjust song speed
-                pass
-
-
-
-
-
+# starting the core functionalities
 if __name__ == "__main__":
+    print(sys.argv)
     if len(sys.argv) != 2:
         print("")
         print("Usage: python script_name.py <sound_file_path>")
         sys.exit(1)
 
-    file_path = sys.argv[1]
-    player = SoundPlayer(file_path)
+    simplesizer = Simplesizer(sys.argv[1])
+    simplesizer.initialize()
+    simplesizer.load_song(simplesizer.song)
 
     # Start a separate thread for user input
-    input_thread = threading.Thread(target=user_input, args=(player,))
+    input_thread = threading.Thread(target=user_input, args=(simplesizer,))
     input_thread.start()
-
-    # Start audio playback in the main thread
-    player.play()
 
     # Wait for the input thread to finish
     input_thread.join()
