@@ -9,8 +9,12 @@
 <body>
     <audio id="audioPlayer" controls></audio>
     <input type="file" id="audioFile">
-    <!-- <button onclick="playAudio()">Play</button>
-    <button onclick="pauseAudio()">Pause</button> -->
+    <label for="speedInput">Geschwindigkeit: </label>
+    <input type="number" id="speedInput" step="0.1" value="1.0">
+    <label for="volumeInput">Lautstärke: </label>
+    <input type="number" id="volumeInput" step="0.1" value="1.0">
+    <button onclick="playAudio()">Play</button>
+    <button onclick="pauseAudio()">Pause</button>
     <button onclick="stopAudio()">Stop</button>
     <script src="script.js"></script>
 </body>
