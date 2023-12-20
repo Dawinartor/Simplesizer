@@ -1,8 +1,11 @@
 let audioPlayer = document.getElementById('audioPlayer');
 let audioFileInput = document.getElementById('audioFile');
 let speedInput = document.getElementById('speedInput');
+let speedSlider = document.getElementById('speedSlider');
 let volumeInput = document.getElementById('volumeInput');
+let volumeSlider = document.getElementById('volumeSlider');
 let pitchInput = document.getElementById('pitchInput');
+let pitchSlider = document.getElementById('pitchSlider');
 let wavesurfer;
 
 function initWaveSurfer() {
@@ -15,18 +18,13 @@ function initWaveSurfer() {
         barWidth: 3,
         barHeight: 1,
         plugins: [
-            // Aktiviere das Pitch-Shift-Plugin
-            WaveSurfer.pitchShift.create({
-                // Pitch-Shift-Plugin aktivieren
-                active: true
-            })
+            WaveSurfer.pitchShift.create()
         ]
     });
 
     wavesurfer.on('ready', function () {
         console.log('WaveSurfer is ready');
-        // Setze die anfängliche Tonhöhe basierend auf dem Pitch-Input
-        updatePitch();
+        wavesurfer.pitchShift.setValue(0);
     });
 
     wavesurfer.on('play', function () {
@@ -55,7 +53,7 @@ function playAudio() {
     updateSpeed();
     updateVolume();
     updatePitch();
-    wavesurfer.playPause();
+    wavesurfer.play();
 }
 
 function pauseAudio() {
@@ -67,8 +65,11 @@ function stopAudio() {
     audioPlayer.pause();
     audioPlayer.currentTime = 0;
     speedInput.value = 1.0;
+    speedSlider.value = 1.0;
     volumeInput.value = 1.0;
-    pitchInput.value = 0; // Setze den Pitch auf den Standardwert
+    volumeSlider.value = 1.0;
+    pitchInput.value = 0;
+    pitchSlider.value = 0;
     updateSpeed();
     updateVolume();
     updatePitch();
@@ -77,19 +78,22 @@ function stopAudio() {
 
 function updateSpeed() {
     const speed = parseFloat(speedInput.value);
+    speedSlider.value = speed;
     audioPlayer.playbackRate = speed;
     wavesurfer.setPlaybackRate(speed);
 }
 
 function updateVolume() {
     const volume = parseFloat(volumeInput.value);
+    volumeSlider.value = volume;
     audioPlayer.volume = volume;
     wavesurfer.setVolume(volume);
 }
 
 function updatePitch() {
     const pitch = parseFloat(pitchInput.value);
-    wavesurfer.setPitch(pitch);
+    pitchSlider.value = pitch;
+    wavesurfer.pitchShift.setValue(pitch);
 }
 
 audioFileInput.addEventListener('change', function () {
@@ -99,7 +103,6 @@ audioFileInput.addEventListener('change', function () {
         audioPlayer.src = objectURL;
         audioPlayer.playbackRate = 1.0;
         audioPlayer.volume = 1.0;
-        pitchInput.value = 0; // Setze den Pitch auf den Standardwert
         updateSpeed();
         updateVolume();
         updatePitch();
@@ -108,8 +111,22 @@ audioFileInput.addEventListener('change', function () {
 });
 
 speedInput.addEventListener('input', updateSpeed);
+speedSlider.addEventListener('input', function() {
+    speedInput.value = speedSlider.value;
+    updateSpeed();
+});
+
 volumeInput.addEventListener('input', updateVolume);
+volumeSlider.addEventListener('input', function() {
+    volumeInput.value = volumeSlider.value;
+    updateVolume();
+});
+
 pitchInput.addEventListener('input', updatePitch);
+pitchSlider.addEventListener('input', function() {
+    pitchInput.value = pitchSlider.value;
+    updatePitch();
+});
 
 window.addEventListener('beforeunload', () => {
     audioPlayer.removeEventListener('play', playAudio);
@@ -118,7 +135,9 @@ window.addEventListener('beforeunload', () => {
     speedInput.removeEventListener('input', updateSpeed);
     volumeInput.removeEventListener('input', updateVolume);
     pitchInput.removeEventListener('input', updatePitch);
+    speedSlider.removeEventListener('input', function() {});
+    volumeSlider.removeEventListener('input', function() {});
+    pitchSlider.removeEventListener('input', function() {});
 });
 
-// Initialisiere WaveSurfer
 initWaveSurfer();

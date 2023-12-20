@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simplesizer</title>
     <link rel="stylesheet" href="style.css">
-    <!-- WaveSurfer.js CSS -->
     <link rel="stylesheet" href="https://unpkg.com/wavesurfer.js/dist/wavesurfer.min.css">
 </head>
 <body>
@@ -13,17 +12,18 @@
     <input type="file" id="audioFile">
     <label for="speedInput">Geschwindigkeit: </label>
     <input type="number" id="speedInput" step="0.1" value="1.0">
+    <input type="range" id="speedSlider" min="0.1" max="3" step="0.1" value="1.0">
     <label for="volumeInput">Lautstärke: </label>
     <input type="number" id="volumeInput" step="0.1" value="1.0">
-    <label for="pitchInput">Pitch: </label>
+    <input type="range" id="volumeSlider" min="0" max="1" step="0.1" value="1.0">
+    <label for="pitchInput">Tonhöhe: </label>
     <input type="number" id="pitchInput" step="0.1" value="0">
+    <input type="range" id="pitchSlider" min="-1" max="1" step="0.1" value="0">
     <button onclick="playAudio()">Play</button>
     <button onclick="pauseAudio()">Pause</button>
     <button onclick="stopAudio()">Stop</button>
-    <!-- WaveSurfer.js JavaScript -->
+    <div id="waveform"></div>
     <script src="https://unpkg.com/wavesurfer.js"></script>
-    <!-- Tone.js JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/tone@14"></script>
     <script src="script.js"></script>
 </body>
 </html>
