@@ -111,19 +111,19 @@ audioFileInput.addEventListener('change', function () {
 });
 
 speedInput.addEventListener('input', updateSpeed);
-speedSlider.addEventListener('input', function() {
+speedSlider.addEventListener('input', function () {
     speedInput.value = speedSlider.value;
     updateSpeed();
 });
 
 volumeInput.addEventListener('input', updateVolume);
-volumeSlider.addEventListener('input', function() {
+volumeSlider.addEventListener('input', function () {
     volumeInput.value = volumeSlider.value;
     updateVolume();
 });
 
 pitchInput.addEventListener('input', updatePitch);
-pitchSlider.addEventListener('input', function() {
+pitchSlider.addEventListener('input', function () {
     pitchInput.value = pitchSlider.value;
     updatePitch();
 });
@@ -135,9 +135,9 @@ window.addEventListener('beforeunload', () => {
     speedInput.removeEventListener('input', updateSpeed);
     volumeInput.removeEventListener('input', updateVolume);
     pitchInput.removeEventListener('input', updatePitch);
-    speedSlider.removeEventListener('input', function() {});
-    volumeSlider.removeEventListener('input', function() {});
-    pitchSlider.removeEventListener('input', function() {});
+    speedSlider.removeEventListener('input', function () { });
+    volumeSlider.removeEventListener('input', function () { });
+    pitchSlider.removeEventListener('input', function () { });
 });
 
 initWaveSurfer();
