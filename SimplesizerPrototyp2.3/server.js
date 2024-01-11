@@ -3,20 +3,18 @@ const multer = require('multer');
 const path = require('path');
 
 const app = express();
-const port = 3001;
+const port = 3000;
 
-// Konfiguration für das Speichern von hochgeladenen Dateien
+app.use(express.static('public'));
+
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
-// Statische Dateien aus dem 'src' Verzeichnis servieren
-app.use(express.static('src'));
-
-// Standardroute für die index.html
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'src', 'index.html'));
+app.post('/upload', upload.single('audioFile'), (req, res) => {
+    res.setHeader('Content-Type', 'audio/mpeg');
+    res.send(req.file.buffer);
 });
 
 app.listen(port, () => {
-    console.log(`Server is running at http://localhost:${port}`);
+    console.log(`Server läuft auf http://localhost:${port}`);
 });
