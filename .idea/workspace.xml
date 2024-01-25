@@ -4,8 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="196ac7b8-f0c7-412d-97fc-9d61bae284d8" name="Changes" comment="">
+    <list default="true" id="196ac7b8-f0c7-412d-97fc-9d61bae284d8" name="Changes" comment="technischer Prototyp">
+      <change afterPath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/global.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/globals1.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/style1.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimplesizerPrototyp2.3/public/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SimplesizerPrototyp2.3/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/SimplesizerPrototyp2.3/server.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,21 +34,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;prototyp2&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "prototyp2",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/lucar/OneDrive/Dokumente/GitHub/Simplesizer/SimplesizerPrototyp2.3/public",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\lucar\OneDrive\Dokumente\GitHub\Simplesizer\SimplesizerPrototyp2.3\public" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\lucar\OneDrive\Dokumente\GitHub\Simplesizer\SimplesizerPrototyp2.3\public" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -55,10 +72,42 @@
       <workItem from="1703071012430" duration="345000" />
       <workItem from="1704377355949" duration="613000" />
       <workItem from="1704803774154" duration="10000" />
+      <workItem from="1704958970028" duration="548000" />
+      <workItem from="1704976374505" duration="9000" />
+      <workItem from="1705405125732" duration="15000" />
+      <workItem from="1705407240090" duration="652000" />
+      <workItem from="1705408999686" duration="9000" />
+      <workItem from="1705435524530" duration="2933000" />
+      <workItem from="1705489908728" duration="7000" />
+      <workItem from="1706191414891" duration="297000" />
     </task>
+    <task id="LOCAL-00001" summary="technischer Prototyp">
+      <option name="closed" value="true" />
+      <created>1704959273566</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1704959273566</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="technischer Prototyp" />
+    <option name="LAST_COMMIT_MESSAGE" value="technischer Prototyp" />
   </component>
 </project>

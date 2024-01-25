@@ -1,0 +1,12 @@
+body {
+  margin: 0;
+  line-height: normal;
+}
+
+:root {
+  /* fonts */
+  --font-merriweather-sans: "Merriweather Sans";
+
+  /* Border radiuses */
+  --br-xl: 20px;
+}

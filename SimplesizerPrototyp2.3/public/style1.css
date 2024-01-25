@@ -1,0 +1,248 @@
+.HTML-CSS-paused {
+  background-color: #4D4D4D;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+}
+
+.hidden {
+  display: none;
+}
+
+.fehler {
+  border: 3px solid red;
+}
+
+input[type=text] {
+  background-color: #FFF4E0;
+  width: 60px;
+  height: 40px;
+  position: absolute;
+  text-align: center;
+  font-size: 25px;
+}
+
+input[id=volumefeld] {
+  top: 705px;
+  left: 1172px;
+}
+
+input[id=speedfeld] {
+  top: 168px;
+  left: 1031px;
+}
+
+input[type=range][id=volumeSlider] {
+  width: 400px;
+  height: 30px;
+  padding: 0 5px;
+  position: absolute;
+  top: 465px;
+  left: 1000px;
+  transform: rotate(-90deg);
+  background: #4D4D4D;
+}
+
+input[type=range][id=speedSlider] {
+  width: 1000px;
+  position: absolute;
+  top: 170px;
+  left: 400px;
+  background: #4D4D4D;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+}
+
+input[type=range]{
+  -webkit-appearance: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 300px;
+  height: 10px;
+  border: none;
+  background: #B46060;
+  border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: none;
+  height: 30px;
+  width: 30px;
+  margin-top: -11px;
+  border-radius: 50%;
+  background: #FFBF9B;
+}
+
+input[id=volumeSlider]::-webkit-slider-thumb {
+  margin-top: -10px;
+}
+
+canvas  {
+  position: absolute;
+  top: 265px;
+  left: 70px;
+  z-index: 1;
+}
+
+input[type=range][id=speedSlider] {
+  width: 600px;
+  height: 30px;
+  padding: 0 5px;
+}
+
+.HTML-CSS-paused .div {
+  background-color: #4D4D4D;
+  width: 1280px;
+  height: 1080px;
+  position: relative;
+}
+
+.HTML-CSS-paused .songtitelanzeige {
+  position: absolute;
+  width: 614px;
+  height: 95px;
+  top: 858px;
+  left: 343px;
+}
+
+.HTML-CSS-paused .overlap-group {
+  position: relative;
+  width: 612px;
+  height: 95px;
+  background-color: #4D4D4D;
+  border: 10px solid;
+  border-color: #B46060;
+}
+
+.HTML-CSS-paused .text-wrapper {
+  position: relative;
+  top: 26px;
+  left: auto;
+  font-family: "Inter", Helvetica;
+  font-weight: 400;
+  color: #FFF4E0;
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.HTML-CSS-paused .overlap {
+  position: absolute;
+  width: 1188px;
+  height: 649px;
+  top: 146px;
+  left: 59px;
+}
+
+.HTML-CSS-paused .overlap-2 {
+  position: absolute;
+  width: 1188px;
+  height: 649px;
+  top: 0;
+  left: 0;
+}
+
+.HTML-CSS-paused .waveform-fenster {
+  position: absolute;
+  width: 1044px;
+  height: 538px;
+  top: 111px;
+  left: 0;
+  border-radius: 20px;
+  border: 10px solid;
+  border-color: #FFBF9B;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.HTML-CSS-paused .waveform-background {
+  position: absolute;
+  width: 1030px;
+  height: 530px;
+  top: 118px;
+  left: 10px;
+  background: #3c3c3c;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.HTML-CSS-paused .icon-pfeil-up {
+  position: absolute;
+  top: 424px;
+  left: -10px;
+}
+
+input[id = pitchfeld]{
+  position: absolute;
+  top: 504px;
+  left: -20px;
+}
+
+.HTML-CSS-paused .icon-pfeil-down {
+  position: absolute;
+  top: 584px;
+  left: -10px;
+}
+
+.HTML-CSS-paused .volumeregler {
+  position: absolute;
+  width: 97px;
+  height: 607px;
+  top: 0;
+  left: 1091px;
+}
+
+.HTML-CSS-paused .speedregler {
+  position: absolute;
+  width: 795px;
+  height: 72px;
+  top: 0;
+  left: 184px;
+}
+
+.HTML-CSS-paused .icon-music-play {
+  position: absolute;
+  width: 115px;
+  height: 115px;
+  top: 848px;
+  left: 56px;
+}
+
+.HTML-CSS-paused .icon-music-stop {
+  position: absolute;
+  width: 115px;
+  height: 115px;
+  top: 848px;
+  left: 203px;
+}
+
+.HTML-CSS-paused .icon-basic-download {
+  position: absolute;
+  width: 115px;
+  height: 114px;
+  top: 848px;
+  left: 1008px;
+}
+
+.HTML-CSS-paused .text-wrapper-2 {
+  position: absolute;
+  top: 40px;
+  left: 466px;
+  font-family: "Merriweather Sans", Helvetica;
+  font-weight: 700;
+  font-style: italic;
+  color: #FFBF9B;
+  font-size: 64px;
+  letter-spacing: 0;
+  line-height: normal;
+}

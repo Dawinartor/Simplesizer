@@ -4,39 +4,67 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Simplesizer</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="global.css" id="styleglobal"/>
+    <link rel="stylesheet" href="index.css" id="stylestyle"/>
     <script src="https://cdn.jsdelivr.net/npm/tone@14.8.36/build/Tone.js"></script>
 </head>
 <body>
-<h1>Simplesizer</h1>
-<form id="uploadForm" enctype="multipart/form-data">
-    <input type="file" name="audioFile" accept=".mp3" onchange="uploadAudio()"/>
-</form>
-<input type="range" id="speedSlider" step="0.01" value="1" min="0" max="4" list="steplist"/>
-<datalist id="steplist">
-    <option>0</option>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-</datalist>
-<div>
-    <canvas id="waveform" height="400" width="600"></canvas>
-    <input type="range" orient="vertical" id="volumeSlider" step="0.01" value="1" min="0" max="5" list="steplist"/>
-    <datalist id="steplist">
-        <option>0</option>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-        <option>5</option>
-    </datalist>
+<div class="HTML-CSS-paused hidden" id="body1">
+    <div class="div">
+        <div class="songtitelanzeige">
+            <div class="overlap-group"><div class="text-wrapper" id="audiotext">“File name”</div></div>
+        </div>
+        <div class="overlap">
+            <div class="overlap-2">
+                <div class="waveform-fenster"></div>
+                <div class="waveform-background"></div>
+                <img class="volumeregler" src="img/volumeregler.svg" />
+            </div>
+            <img class="speedregler" src="img/speedregler.svg" />
+        </div>
+        <img class="icon-music-play" src="img/icon_music_play_button.png" id="playPauseButton"/>
+        <img class="icon-music-stop" src="img/icon_music_stop_button.png" id="backButton"/>
+        <img class="icon-basic-download" src="img/icon_basic_download.png" id="downloadButton"/>
+        <img class="icon-pfeil-up" src="img/Pfeil_oben.png" id="pfeilUp"/>
+        <img class="icon-pfeil-down" src="img/Pfeil_unten.png" id="pfeilDown"/>
+        <div class="text-wrapper-2">Simplesizer</div>
+        <canvas id="waveform" height="520" width="1025"></canvas>
+        <input type="range" id="speedSlider" step="0.01" value="1" min="0" max="4" list="steplist2"/>
+        <datalist id="steplist2">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+        </datalist>
+        <input type="text" id="speedfeld" value="1" oninput="changeSpeed()">
+        <input type="text" id="volumefeld" value="1" oninput="changeVolume()">
+        <input type="text" id="pitchfeld" value="0" oninput="changePitch(document.getElementById('pitchfeld').value)">
+        <input type="range" id="volumeSlider" step="0.01" value="1" min="0" max="5" list="steplist"/>
+        <datalist id="steplist">
+            <option>0</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+        </datalist>
+    </div>
 </div>
-<div>
-    <button type="button" id="playPauseButton">Play/Pause</button>
-    <button type="button" id="backButton" onclick="backtostart()">Back to Start</button>
-    <button id="downloadButton">Download</button>
+<div class="start" id="body2" ondrop="handleDrop(event)" ondragover="allowDrop(event)">
+    <div class="start-child"></div>
+    <div class="datei-auswhlen-button">
+        <label for="fileInput" class="datei-auswhlen-button-child">
+            <div class="datei-auswhlen">Datei auswählen</div>
+            <img class="upload-cloud-icon" alt="" src="img/64a538aa-01d2-4314-b056-309109281cba.png" />
+        </label>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="fileInput" name="audioFile" style="display: none" accept=".mp3, .wav" onchange="uploadAudio()"/>
+        </form>
+    </div>
+    <i class="simplesizer">Simplesizer</i>
 </div>
-<script src="main.js"></script>
+<button title="Switch" onclick="switchBodies()"></button>
 </body>
+<script src="main.js"></script>
 </html>
